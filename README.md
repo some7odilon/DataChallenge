@@ -1,4 +1,4 @@
-# Éclaireur — aide à la décision scolaire
+# Éclaireur - aide à la décision scolaire
 
 Éclaireur analyse des indicateurs scolaires agrégés pour signaler les régions où plusieurs facteurs sont associés à une vulnérabilité éducative. Le projet comprend un pipeline Python d’audit et de calcul, des exports JSON et une application Angular.
 
@@ -10,7 +10,7 @@ Prérequis : Node.js et npm.
 
 ```bash
 cd eclaireur
-npm ci
+npm i
 npm start
 ```
 
