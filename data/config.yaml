@@ -1,0 +1,73 @@
+# Configuration unique du pipeline d'audit et de l'indice Éclaireur.
+classeur: data/raw/dataChallenge.xlsx
+
+annee_simple: fin
+
+# Période en années scolaires inclusives (année de début utilisée par les calculs).
+periode:
+  premiere_annee_scolaire: "2015/16"
+  derniere_annee_scolaire: "2024/25"
+
+feuilles:
+  primaire_effectifs_region:      {feuille: Feuil1, type: effectif, tableau: 1}
+  primaire_effectifs_statut:      {feuille: Feuil2, type: effectif, tableau: 2}
+  primaire_effectifs_milieu:      {feuille: Feuil3, type: effectif, tableau: 3}
+  primaire_effectifs_niveau:      {feuille: Feuil4, type: effectif, tableau: 4}
+  primaire_nouveaux_cp1_region:   {feuille: Feuil5, type: effectif, tableau: 5}
+  primaire_tba_region:            {feuille: Feuil6, type: taux_brut, tableau: 6}
+  primaire_tbs_region:            {feuille: Feuil7, type: taux_brut, tableau: 7}
+  primaire_achevement_region:     {feuille: Feuil8, type: taux_achevement, tableau: 8}
+  primaire_cep_region:            {feuille: Feuil9, type: taux_pct, tableau: 9}
+  primaire_ips_tba:               {feuille: Feuil10, type: indice, tableau: 10}
+  primaire_ips_tbs:               {feuille: Feuil11, type: indice, tableau: 11}
+  primaire_ips_tap:               {feuille: Feuil12, type: indice, tableau: 12}
+  primaire_ecoles_region:         {feuille: Feuil13, type: nombre, tableau: 13}
+  prescolaire:                    {feuille: PRESCOLAIRE, multi: true}
+
+# Le tableau 3 du préscolaire est ventilé par milieu de résidence, pas par région.
+tableaux:
+  prescolaire_T3:
+    renommage: {region_brut: milieu}
+
+signaux_perturbation:
+  annee_choc: 2022
+
+priorite_top_k: 4
+
+indice:
+  ponderations:
+    achevement_niveau: 0.25
+    achevement_tendance: 0.10
+    ecart_genre_achevement: 0.10
+    reussite_cep: 0.10
+    choc_ecoles_effectifs: 0.15
+    entrees_cp1: 0.10
+    scolarisation_tbs: 0.15
+    presco_acces: 0.05
+
+  justification_poids:
+    achevement_niveau: "Résultat le plus proche du décrochage disponible : poids le plus élevé."
+    achevement_tendance: "Mesure la dégradation par rapport à avant le choc ; poids limité pour éviter le double comptage de l'achèvement."
+    ecart_genre_achevement: "Mesure la disparité filles-garçons ; le sens de l'écart est conservé séparément."
+    reussite_cep: "Résultat de fin de cycle, calculé sur les candidats : poids modéré."
+    choc_ecoles_effectifs: "Signal indirect de perturbation scolaire ; ne prouve pas l'abandon."
+    entrees_cp1: "Mesure l'évolution des entrées dans le cycle par rapport à l'avant-choc."
+    scolarisation_tbs: "Mesure l'accès au primaire ; taux plafonné à 100 pour l'indice."
+    presco_acces: "Accès préscolaire, lien indirect avec le primaire : poids faible."
+
+  normalisation: robuste
+  niveau_annees: 3
+  sensibilite:
+    amplitude: 0.5
+    tirages: 1000
+  robustesse:
+    normalisations: [minmax, robuste, rang]
+    niveau_annees: [1, 2, 3]
+    tirages_par_variante: 20
+    seuil_saut_rang: 4
+    seuil_redondance: 0.8
+
+validation:
+  regions_attendues_vulnerables: []
+
+export_dir: app/src/assets/data

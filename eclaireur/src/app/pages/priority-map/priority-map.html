@@ -1,0 +1,88 @@
+<div class="map-page">
+  <section class="map-intro">
+    <div>
+      <div class="eyebrow"><span class="eyebrow-line"></span> ORIENTATION DES MOYENS</div>
+      <div class="title-line"><h1>Carte des <em>priorités.</em></h1><span class="year-badge">ANNÉE {{ referenceYear() }}</span></div>
+      <p>Repérer les régions où plusieurs signaux éducatifs indiquent une vulnérabilité plus forte.</p>
+    </div>
+    <a class="back-link" routerLink="/dashboard"><span>←</span> Vue d’ensemble</a>
+  </section>
+
+  @if (loading()) {
+    <div class="map-state">Chargement de la carte régionale…</div>
+  } @else if (loadError()) {
+    <div class="map-state error">Impossible de charger les données régionales.</div>
+  } @else {
+    <section class="map-disclaimer"><span>i</span><p><strong>CARTE SCHÉMATIQUE</strong> {{ metadata()?.lecture_du_score }} La forme sert à explorer les scores, pas à mesurer des frontières ou des distances.</p></section>
+
+    <div class="priority-filters" aria-label="Filtrer les régions affichées">
+      <button [class.active]="activeFilter() === 'tous'" (click)="selectFilter('tous')"><span class="filter-count">{{ regions().length }}</span> Toutes les régions</button>
+      <button [class.active]="activeFilter() === 'prioritaire'" (click)="selectFilter('prioritaire')"><i class="legend-dot priority"></i><span class="filter-count">{{ priorityCount() }}</span> Prioritaires</button>
+      <button [class.active]="activeFilter() === 'à surveiller'" (click)="selectFilter('à surveiller')"><i class="legend-dot watch"></i><span class="filter-count">{{ watchCount() }}</span> À surveiller</button>
+      <button [class.active]="activeFilter() === 'moins exposée'" (click)="selectFilter('moins exposée')"><i class="legend-dot lower"></i><span class="filter-count">{{ lowerCount() }}</span> Moins exposées</button>
+    </div>
+
+    <section class="map-layout">
+      <article class="map-card">
+        <div class="map-card-header">
+          <div><span class="map-kicker">BURKINA FASO</span><h2>Maillage régional</h2></div>
+          <span class="map-visible">{{ visibleRegions().length }} / {{ regions().length }} VISIBLES</span>
+        </div>
+        <div class="map-canvas">
+          <svg class="map-grid" aria-hidden="true"><defs><pattern id="map-grid-pattern" width="34" height="34" patternUnits="userSpaceOnUse"><path d="M 34 0 L 0 0 0 34" fill="none" stroke="#49483e" stroke-width=".6"/><circle cx="34" cy="34" r="1" fill="#98917d"/></pattern></defs><rect width="100%" height="100%" fill="url(#map-grid-pattern)"/></svg>
+          <svg class="burkina-map" viewBox="0 0 920 620" role="group" aria-label="Carte schématique interactive des 13 régions du Burkina Faso">
+            @for (shape of mapLayout; track shape.code) {
+              @if (regionForCode(shape.code); as region) {
+                <g [class]="'map-region ' + regionClass(region)" [class.filtered-out]="!visibleCodes().has(region.code)" [class.is-selected]="selectedCode() === region.code" role="button" tabindex="0" [attr.aria-label]="region.region + ', score ' + formatScore(region.score) + ', ' + region.niveau" [attr.aria-pressed]="selectedCode() === region.code" (click)="selectRegion(region)" (keydown.enter)="selectRegion(region)" (keydown.space)="$event.preventDefault(); selectRegion(region)">
+                  <polygon [attr.points]="shape.points"></polygon>
+                  <rect [attr.x]="shape.x - 37" [attr.y]="shape.y - 13" width="74" height="25" rx="2"></rect>
+                  <text [attr.x]="shape.x" [attr.y]="shape.y + 4">{{ region.code }} · {{ formatScore(region.score) }}</text>
+                </g>
+              }
+            }
+          </svg>
+          <div class="map-compass"><span>N</span><b>↑</b></div>
+          <span class="map-scale">SCHÉMA TERRITORIAL · PAS À L’ÉCHELLE</span>
+        </div>
+        <div class="map-legend"><span>PRIORITÉ</span><span><i class="legend-dot priority"></i> Prioritaire</span><span><i class="legend-dot watch"></i> À surveiller</span><span><i class="legend-dot lower"></i> Moins exposée</span><span class="legend-note">Cliquez sur une région pour afficher sa fiche</span></div>
+      </article>
+
+      @if (selectedRegion(); as region) {
+        <aside class="region-panel" aria-live="polite">
+          <div class="panel-eyebrow"><span>FICHE DE REPÉRAGE</span><span class="region-code">{{ region.code }}</span></div>
+          <div class="region-heading"><div><span class="rank-label">RANG {{ region.rang }} SUR {{ regions().length }}</span><h2>{{ region.region }}</h2></div><span [class]="'level-badge ' + regionClass(region)">{{ region.niveau }}</span></div>
+
+          <div class="key-stats">
+            <div class="score-stat"><span>INDICE RELATIF</span><strong>{{ formatScore(region.score) }}<small> / 100</small></strong><em>Rang observé {{ region.rang }}</em></div>
+            <div class="confidence-stat"><span>CLASSEMENT PRIORITAIRE</span><strong>{{ formatProbability(region.prob_prioritaire) }}</strong><div class="probability-track"><i [style.width.%]="probabilityPercent"></i></div><em>Probabilité selon les scénarios de sensibilité</em></div>
+          </div>
+
+          <div class="rank-interval"><span>PLAGE DES RANGS OBSERVÉS</span><strong>{{ region.rang_p5 }} <i>—</i> {{ region.rang_p95 }}</strong><small>du 5e au 95e percentile des scénarios</small></div>
+
+          <section class="factors-section">
+            <div class="section-heading"><h3>Facteurs dominants</h3><span>INTENSITÉ RELATIVE</span></div>
+            @for (factor of activeFactors; track factor; let index = $index) {
+              <div class="factor-row"><div><span>{{ index + 1 }}. {{ indicatorLabel(factor) }}</span><strong>{{ formatScore(region.indicators?.[factor]?.risque ?? undefined) }}</strong></div><div class="factor-track"><i [style.width.%]="indicatorRisk(region, factor)"></i></div></div>
+            } @empty {
+              <p class="no-factors">Aucun facteur complémentaire disponible pour cette région.</p>
+            }
+          </section>
+
+          <section class="action-note"><div class="note-title"><span>✳</span> PISTE D’ACTION</div><p>{{ region.profile?.recommandation ?? 'Aucune recommandation disponible.' }}</p></section>
+
+          <a class="detail-link" routerLink="/fiche-regionale" [queryParams]="{ region: region.code }">OUVRIR LA FICHE RÉGIONALE <span>→</span></a>
+
+          <div class="region-foot"><span><i [class.reliable]="region.confiance === 'élevée'"></i> Confiance {{ region.confiance }}</span><span>{{ region.classement_robuste ? 'Classement robuste' : 'Classement sensible' }}</span></div>
+        </aside>
+      }
+    </section>
+
+    <section class="priority-summary">
+      <div><span class="summary-symbol priority-mark">■</span><div><strong>{{ priorityCount() }} régions prioritaires</strong><p>Plusieurs indicateurs signalent une vulnérabilité élevée.</p></div></div>
+      <div><span class="summary-symbol watch-mark">◆</span><div><strong>{{ watchCount() }} régions à surveiller</strong><p>Les signaux méritent un suivi régulier.</p></div></div>
+      <div><span class="summary-symbol lower-mark">—</span><div><strong>{{ lowerCount() }} régions moins exposées</strong><p>Exposition relative plus faible dans cet indice.</p></div></div>
+    </section>
+
+    <footer class="map-footer"><span>ÉCLAIREUR · MENAPLN BURKINA FASO</span><span>Les scores comparent des vulnérabilités relatives. Ils ne mesurent pas le décrochage individuel.</span></footer>
+  }
+</div>

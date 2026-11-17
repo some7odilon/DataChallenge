@@ -1,0 +1,300 @@
+[
+  {
+    "profil": "Perturbation scolaire",
+    "profil_code": "choc",
+    "facteurs_dominants": [
+      "achevement_niveau",
+      "choc_ecoles_effectifs",
+      "scolarisation_tbs"
+    ],
+    "groupe_en_retrait": null,
+    "recommandation": "Prioriser la réouverture et la sécurisation des écoles, la continuité éducative (écoles temporaires, enseignement à distance) et la réintégration des élèves déplacés.",
+    "code": "BMH",
+    "region": "BOUCLE DU MOUHOUN",
+    "contributions": {
+      "achevement_niveau": 19.0438,
+      "achevement_tendance": 10.0,
+      "ecart_genre_achevement": 3.017,
+      "reussite_cep": 10.0,
+      "choc_ecoles_effectifs": 15.0,
+      "entrees_cp1": 8.7351,
+      "scolarisation_tbs": 10.3191,
+      "presco_acces": 3.9318
+    }
+  },
+  {
+    "profil": "Entrée dans le cycle fragile",
+    "profil_code": "entree",
+    "facteurs_dominants": [
+      "achevement_niveau",
+      "scolarisation_tbs",
+      "choc_ecoles_effectifs"
+    ],
+    "groupe_en_retrait": null,
+    "recommandation": "Renforcer l'accès à l'école : inscription au CP1, développement du préscolaire, proximité des établissements et sensibilisation des familles.",
+    "code": "EST",
+    "region": "EST",
+    "contributions": {
+      "achevement_niveau": 25.0,
+      "achevement_tendance": 10.0,
+      "ecart_genre_achevement": 1.0452,
+      "reussite_cep": 0.0,
+      "choc_ecoles_effectifs": 13.6561,
+      "entrees_cp1": 10.0,
+      "scolarisation_tbs": 15.0,
+      "presco_acces": 5.0
+    }
+  },
+  {
+    "profil": "Entrée dans le cycle fragile",
+    "profil_code": "entree",
+    "facteurs_dominants": [
+      "achevement_niveau",
+      "scolarisation_tbs",
+      "entrees_cp1"
+    ],
+    "groupe_en_retrait": null,
+    "recommandation": "Renforcer l'accès à l'école : inscription au CP1, développement du préscolaire, proximité des établissements et sensibilisation des familles.",
+    "code": "SAH",
+    "region": "SAHEL",
+    "contributions": {
+      "achevement_niveau": 25.0,
+      "achevement_tendance": 5.8548,
+      "ecart_genre_achevement": 0.0,
+      "reussite_cep": 5.8976,
+      "choc_ecoles_effectifs": 9.7987,
+      "entrees_cp1": 10.0,
+      "scolarisation_tbs": 15.0,
+      "presco_acces": 5.0
+    }
+  },
+  {
+    "profil": "Perturbation scolaire",
+    "profil_code": "choc",
+    "facteurs_dominants": [
+      "achevement_niveau",
+      "choc_ecoles_effectifs",
+      "scolarisation_tbs"
+    ],
+    "groupe_en_retrait": null,
+    "recommandation": "Prioriser la réouverture et la sécurisation des écoles, la continuité éducative (écoles temporaires, enseignement à distance) et la réintégration des élèves déplacés.",
+    "code": "CNO",
+    "region": "CENTRE-NORD",
+    "contributions": {
+      "achevement_niveau": 20.6509,
+      "achevement_tendance": 9.3366,
+      "ecart_genre_achevement": 5.4238,
+      "reussite_cep": 2.0833,
+      "choc_ecoles_effectifs": 15.0,
+      "entrees_cp1": 5.0925,
+      "scolarisation_tbs": 10.0307,
+      "presco_acces": 0.0
+    }
+  },
+  {
+    "profil": "Disparités filles-garçons",
+    "profil_code": "genre",
+    "facteurs_dominants": [
+      "achevement_niveau",
+      "achevement_tendance",
+      "ecart_genre_achevement"
+    ],
+    "groupe_en_retrait": "garçons",
+    "recommandation": "Cibler le maintien du groupe en retrait (voir sens de l'écart) : mesures de soutien adaptées et analyse des causes locales avant d'agir. Groupe en retrait : garçons.",
+    "code": "NOR",
+    "region": "NORD",
+    "contributions": {
+      "achevement_niveau": 13.8449,
+      "achevement_tendance": 9.7597,
+      "ecart_genre_achevement": 8.4649,
+      "reussite_cep": 6.0497,
+      "choc_ecoles_effectifs": 5.1678,
+      "entrees_cp1": 0.2199,
+      "scolarisation_tbs": 2.1005,
+      "presco_acces": 3.6317
+    }
+  },
+  {
+    "profil": "Disparités filles-garçons",
+    "profil_code": "genre",
+    "facteurs_dominants": [
+      "achevement_niveau",
+      "achevement_tendance",
+      "choc_ecoles_effectifs"
+    ],
+    "groupe_en_retrait": "garçons",
+    "recommandation": "Cibler le maintien du groupe en retrait (voir sens de l'écart) : mesures de soutien adaptées et analyse des causes locales avant d'agir. Groupe en retrait : garçons.",
+    "code": "CES",
+    "region": "CENTRE-EST",
+    "contributions": {
+      "achevement_niveau": 12.2622,
+      "achevement_tendance": 6.5884,
+      "ecart_genre_achevement": 6.1836,
+      "reussite_cep": 0.0,
+      "choc_ecoles_effectifs": 6.196,
+      "entrees_cp1": 1.7853,
+      "scolarisation_tbs": 5.0425,
+      "presco_acces": 1.1616
+    }
+  },
+  {
+    "profil": "Faible achèvement du cycle",
+    "profil_code": "achevement",
+    "facteurs_dominants": [
+      "achevement_niveau",
+      "reussite_cep",
+      "scolarisation_tbs"
+    ],
+    "groupe_en_retrait": null,
+    "recommandation": "Accompagner le maintien jusqu'au CM2 : suivi des élèves à risque, soutien scolaire et préparation au CEP, appui aux classes de fin de cycle.",
+    "code": "CAS",
+    "region": "CASCADES",
+    "contributions": {
+      "achevement_niveau": 11.0347,
+      "achevement_tendance": 3.1487,
+      "ecart_genre_achevement": 0.8626,
+      "reussite_cep": 5.2562,
+      "choc_ecoles_effectifs": 2.5351,
+      "entrees_cp1": 0.442,
+      "scolarisation_tbs": 5.0514,
+      "presco_acces": 3.4342
+    }
+  },
+  {
+    "profil": "Disparités filles-garçons",
+    "profil_code": "genre",
+    "facteurs_dominants": [
+      "ecart_genre_achevement",
+      "reussite_cep",
+      "choc_ecoles_effectifs"
+    ],
+    "groupe_en_retrait": "garçons",
+    "recommandation": "Cibler le maintien du groupe en retrait (voir sens de l'écart) : mesures de soutien adaptées et analyse des causes locales avant d'agir. Groupe en retrait : garçons.",
+    "code": "HBS",
+    "region": "HAUTS-BASSINS",
+    "contributions": {
+      "achevement_niveau": 4.485,
+      "achevement_tendance": 1.7786,
+      "ecart_genre_achevement": 8.2849,
+      "reussite_cep": 6.4279,
+      "choc_ecoles_effectifs": 5.3767,
+      "entrees_cp1": 2.4585,
+      "scolarisation_tbs": 1.2657,
+      "presco_acces": 0.0491
+    }
+  },
+  {
+    "profil": "Faible achèvement du cycle",
+    "profil_code": "achevement",
+    "facteurs_dominants": [
+      "achevement_niveau",
+      "reussite_cep",
+      "scolarisation_tbs"
+    ],
+    "groupe_en_retrait": null,
+    "recommandation": "Accompagner le maintien jusqu'au CM2 : suivi des élèves à risque, soutien scolaire et préparation au CEP, appui aux classes de fin de cycle.",
+    "code": "SOU",
+    "region": "SUD-OUEST",
+    "contributions": {
+      "achevement_niveau": 10.4015,
+      "achevement_tendance": 1.4846,
+      "ecart_genre_achevement": 0.0,
+      "reussite_cep": 5.5433,
+      "choc_ecoles_effectifs": 0.8204,
+      "entrees_cp1": 1.642,
+      "scolarisation_tbs": 4.0989,
+      "presco_acces": 1.8754
+    }
+  },
+  {
+    "profil": "Disparités filles-garçons",
+    "profil_code": "genre",
+    "facteurs_dominants": [
+      "reussite_cep",
+      "ecart_genre_achevement",
+      "entrees_cp1"
+    ],
+    "groupe_en_retrait": "garçons",
+    "recommandation": "Cibler le maintien du groupe en retrait (voir sens de l'écart) : mesures de soutien adaptées et analyse des causes locales avant d'agir. Groupe en retrait : garçons.",
+    "code": "COU",
+    "region": "CENTRE-OUEST",
+    "contributions": {
+      "achevement_niveau": 0.0,
+      "achevement_tendance": 0.0,
+      "ecart_genre_achevement": 10.0,
+      "reussite_cep": 10.0,
+      "choc_ecoles_effectifs": 0.9464,
+      "entrees_cp1": 1.8534,
+      "scolarisation_tbs": 0.0,
+      "presco_acces": 0.0518
+    }
+  },
+  {
+    "profil": "Disparités filles-garçons",
+    "profil_code": "genre",
+    "facteurs_dominants": [
+      "ecart_genre_achevement",
+      "achevement_niveau",
+      "achevement_tendance"
+    ],
+    "groupe_en_retrait": "garçons",
+    "recommandation": "Cibler le maintien du groupe en retrait (voir sens de l'écart) : mesures de soutien adaptées et analyse des causes locales avant d'agir. Groupe en retrait : garçons.",
+    "code": "PCL",
+    "region": "PLATEAU-CENTRAL",
+    "contributions": {
+      "achevement_niveau": 4.7097,
+      "achevement_tendance": 2.1847,
+      "ecart_genre_achevement": 8.991,
+      "reussite_cep": 2.1176,
+      "choc_ecoles_effectifs": 0.0,
+      "entrees_cp1": 0.0,
+      "scolarisation_tbs": 0.0,
+      "presco_acces": 0.8648
+    }
+  },
+  {
+    "profil": "Disparités filles-garçons",
+    "profil_code": "genre",
+    "facteurs_dominants": [
+      "ecart_genre_achevement",
+      "entrees_cp1",
+      "presco_acces"
+    ],
+    "groupe_en_retrait": "garçons",
+    "recommandation": "Cibler le maintien du groupe en retrait (voir sens de l'écart) : mesures de soutien adaptées et analyse des causes locales avant d'agir. Groupe en retrait : garçons.",
+    "code": "CSU",
+    "region": "CENTRE-SUD",
+    "contributions": {
+      "achevement_niveau": 0.5062,
+      "achevement_tendance": 0.1582,
+      "ecart_genre_achevement": 10.0,
+      "reussite_cep": 0.367,
+      "choc_ecoles_effectifs": 0.4272,
+      "entrees_cp1": 2.3113,
+      "scolarisation_tbs": 0.0,
+      "presco_acces": 2.1249
+    }
+  },
+  {
+    "profil": "Disparités filles-garçons",
+    "profil_code": "genre",
+    "facteurs_dominants": [
+      "ecart_genre_achevement",
+      "reussite_cep"
+    ],
+    "groupe_en_retrait": "garçons",
+    "recommandation": "Cibler le maintien du groupe en retrait (voir sens de l'écart) : mesures de soutien adaptées et analyse des causes locales avant d'agir. Groupe en retrait : garçons.",
+    "code": "CEN",
+    "region": "CENTRE",
+    "contributions": {
+      "achevement_niveau": 0.0,
+      "achevement_tendance": 0.0,
+      "ecart_genre_achevement": 7.3595,
+      "reussite_cep": 2.2904,
+      "choc_ecoles_effectifs": 0.0,
+      "entrees_cp1": 0.0,
+      "scolarisation_tbs": 0.0,
+      "presco_acces": 0.0
+    }
+  }
+]

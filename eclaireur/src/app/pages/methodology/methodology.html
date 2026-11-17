@@ -1,0 +1,24 @@
+<section class="page methodology-page">
+  <header class="page-heading">
+    <div><span class="eyebrow">DOCUMENTATION TECHNIQUE · {{ year() }}</span><h1>Cadre méthodologique, pondérations et limites</h1>
+      <p>Comment lire les signaux de vulnérabilité scolaire, et ce que les données permettent réellement de conclure.</p></div>
+      <a class="back-link" routerLink="/dashboard">← Tableau de bord</a>
+  </header>
+  <div class="notice"><strong>Avertissement méthodologique</strong><p>{{ metadata()?.lecture_du_score ?? 'Le classement décrit une vulnérabilité relative entre régions ; il ne mesure pas le décrochage scolaire et ne suit pas les parcours individuels.' }}</p></div>
+  <section class="panel"><h2>Ce que le modèle montre — et ne montre pas</h2><div class="scope-grid">
+    <article class="scope-card positive"><h3>Ce que le modèle montre</h3><p>Des écarts régionaux relatifs et des signaux indirects associés aux résultats et à l’accès à l’éducation.</p><p>Un classement indicatif pour éclairer l’analyse et orienter les vérifications de terrain.</p></article>
+    <article class="scope-card caution"><h3>Ce que le modèle ne montre pas</h3><p>Il n’identifie ni les causes individuelles, ni les élèves ayant quitté l’école.</p><p>Une association entre indicateurs ne démontre pas un lien de cause à effet.</p></article>
+  </div></section>
+  <section class="panel"><div class="section-title"><div><span class="eyebrow">ARCHITECTURE DU SCORE</span><h2>Pondération des indicateurs</h2></div><span class="total">Total : {{ (metadata()?.ponderations ? 100 : 0) }} %</span></div>
+    <p class="muted">{{ metadata()?.normalisation === 'robuste' ? 'Normalisation robuste des indicateurs entre régions.' : 'Les indicateurs sont normalisés pour permettre leur agrégation.' }} Les pondérations sont renormalisées lorsque des valeurs sont manquantes.</p>
+    <div class="weight-list"><article class="weight-row" *ngFor="let item of (metadata()?.ponderations | keyvalue)"><div class="weight-copy"><strong>{{ metadata()?.indicateurs?.[item.key]?.label ?? item.key.replaceAll('_', ' ') }}</strong><span>{{ metadata()?.justification_poids?.[item.key] }}</span></div><b>{{ percent(item.value) }}</b><div class="weight-track"><i [style.width.%]="item.value * 100"></i></div><small *ngIf="metadata()?.indicateurs?.[item.key]?.note">{{ metadata()?.indicateurs?.[item.key]?.note }}</small></article></div>
+  </section>
+  <section class="panel"><div class="section-title"><div><span class="eyebrow">ROBUSTESSE</span><h2>Stabilité des résultats</h2></div></div>
+    <p class="muted">Les analyses de sensibilité évaluent la stabilité du classement lorsque les hypothèses de calcul changent. Elles ne constituent pas une probabilité statistique sur la situation d’une région.</p>
+    <div class="robust-grid"><article *ngFor="let item of (metadata()?.robustesse | keyvalue)"><span>{{ item.key }}</span><strong>{{ item.value.spearman_moyen | number:'1.2-3' }}</strong><small>corrélation moyenne de rang · {{ item.value.n_scenarios }} scénarios</small></article></div>
+    <p class="muted" *ngIf="metadata()?.lecture_confiance">{{ metadata()?.lecture_confiance }}</p>
+  </section>
+  <section class="panel"><span class="eyebrow">QUALITÉ DES DONNÉES</span><h2>Limites à garder en tête</h2><ul class="limits"><li *ngFor="let limit of metadata()?.limites">{{ limit }}</li></ul>
+    <h3>Indicateurs et sources</h3><div class="source-grid"><article *ngFor="let item of (metadata()?.indicateurs | keyvalue)"><strong>{{ item.value.label }}</strong><span>Source : {{ item.value.sources?.join(', ') ?? 'non renseignée' }}</span></article></div>
+  </section>
+</section>

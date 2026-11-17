@@ -1,0 +1,398 @@
+{
+  "version_pipeline": "0.2.0",
+  "genere_le": "2026-11-16",
+  "lecture_du_score": "0 = risque le plus faible observé, 100 = le plus élevé, relatif aux régions. Classement de vulnérabilité éducative, pas un taux de décrochage.",
+  "lecture_confiance": "Indicateur descriptif de couverture des pondérations et de disponibilité temporelle ; ce n'est pas un intervalle ni une probabilité statistique.",
+  "normalisation": "robuste",
+  "niveau_annees": 3,
+  "ponderations": {
+    "achevement_niveau": 0.25,
+    "achevement_tendance": 0.1,
+    "ecart_genre_achevement": 0.1,
+    "reussite_cep": 0.1,
+    "choc_ecoles_effectifs": 0.15,
+    "entrees_cp1": 0.1,
+    "scolarisation_tbs": 0.15,
+    "presco_acces": 0.05
+  },
+  "justification_poids": {
+    "achevement_niveau": "Résultat le plus proche du décrochage disponible : poids le plus élevé.",
+    "achevement_tendance": "Mesure la dégradation par rapport à avant le choc ; poids limité pour éviter le double comptage de l'achèvement.",
+    "ecart_genre_achevement": "Mesure la disparité filles-garçons ; le sens de l'écart est conservé séparément.",
+    "reussite_cep": "Résultat de fin de cycle, calculé sur les candidats : poids modéré.",
+    "choc_ecoles_effectifs": "Signal indirect de perturbation scolaire ; ne prouve pas l'abandon.",
+    "entrees_cp1": "Mesure l'évolution des entrées dans le cycle par rapport à l'avant-choc.",
+    "scolarisation_tbs": "Mesure l'accès au primaire ; taux plafonné à 100 pour l'indice.",
+    "presco_acces": "Accès préscolaire, lien indirect avec le primaire : poids faible."
+  },
+  "poids_par_source": {
+    "primaire_achevement_region": 0.45,
+    "primaire_tbs_region": 0.15,
+    "primaire_cep_region": 0.1,
+    "primaire_nouveaux_cp1_region": 0.1,
+    "primaire_effectifs_region": 0.075,
+    "primaire_ecoles_region": 0.075,
+    "prescolaire_T5": 0.05
+  },
+  "sensibilite": {
+    "tirages": 1000,
+    "amplitude": 0.5,
+    "top_k": 4,
+    "spearman_moyen": 0.9607,
+    "spearman_min": 0.7967
+  },
+  "robustesse": {
+    "poids": {
+      "n_scenarios": 1000,
+      "spearman_moyen": 0.9898,
+      "spearman_min": 0.9341,
+      "top_k_identique": 1.0
+    },
+    "normalisation": {
+      "n_scenarios": 2,
+      "spearman_moyen": 0.9863,
+      "spearman_min": 0.9835,
+      "top_k_identique": 1.0
+    },
+    "annees": {
+      "n_scenarios": 2,
+      "spearman_moyen": 0.9863,
+      "spearman_min": 0.978,
+      "top_k_identique": 1.0
+    },
+    "retrait": {
+      "n_scenarios": 8,
+      "spearman_moyen": 0.9828,
+      "spearman_min": 0.967,
+      "top_k_identique": 1.0
+    },
+    "combine": {
+      "n_scenarios": 1620,
+      "spearman_moyen": 0.9607,
+      "spearman_min": 0.7967,
+      "top_k_identique": 0.9926
+    }
+  },
+  "correlations": {
+    "matrice": {
+      "achevement_niveau": {
+        "achevement_niveau": 1.0,
+        "achevement_tendance": 0.89,
+        "ecart_genre_achevement": -0.65,
+        "reussite_cep": -0.18,
+        "choc_ecoles_effectifs": 0.81,
+        "entrees_cp1": 0.6,
+        "scolarisation_tbs": 0.93,
+        "presco_acces": 0.63
+      },
+      "achevement_tendance": {
+        "achevement_niveau": 0.89,
+        "achevement_tendance": 1.0,
+        "ecart_genre_achevement": -0.4,
+        "reussite_cep": -0.13,
+        "choc_ecoles_effectifs": 0.8,
+        "entrees_cp1": 0.46,
+        "scolarisation_tbs": 0.79,
+        "presco_acces": 0.57
+      },
+      "ecart_genre_achevement": {
+        "achevement_niveau": -0.65,
+        "achevement_tendance": -0.4,
+        "ecart_genre_achevement": 1.0,
+        "reussite_cep": 0.05,
+        "choc_ecoles_effectifs": -0.46,
+        "entrees_cp1": -0.36,
+        "scolarisation_tbs": -0.81,
+        "presco_acces": -0.45
+      },
+      "reussite_cep": {
+        "achevement_niveau": -0.18,
+        "achevement_tendance": -0.13,
+        "ecart_genre_achevement": 0.05,
+        "reussite_cep": 1.0,
+        "choc_ecoles_effectifs": 0.05,
+        "entrees_cp1": 0.03,
+        "scolarisation_tbs": -0.09,
+        "presco_acces": 0.04
+      },
+      "choc_ecoles_effectifs": {
+        "achevement_niveau": 0.81,
+        "achevement_tendance": 0.8,
+        "ecart_genre_achevement": -0.46,
+        "reussite_cep": 0.05,
+        "choc_ecoles_effectifs": 1.0,
+        "entrees_cp1": 0.79,
+        "scolarisation_tbs": 0.85,
+        "presco_acces": 0.36
+      },
+      "entrees_cp1": {
+        "achevement_niveau": 0.6,
+        "achevement_tendance": 0.46,
+        "ecart_genre_achevement": -0.36,
+        "reussite_cep": 0.03,
+        "choc_ecoles_effectifs": 0.79,
+        "entrees_cp1": 1.0,
+        "scolarisation_tbs": 0.69,
+        "presco_acces": 0.43
+      },
+      "scolarisation_tbs": {
+        "achevement_niveau": 0.93,
+        "achevement_tendance": 0.79,
+        "ecart_genre_achevement": -0.81,
+        "reussite_cep": -0.09,
+        "choc_ecoles_effectifs": 0.85,
+        "entrees_cp1": 0.69,
+        "scolarisation_tbs": 1.0,
+        "presco_acces": 0.62
+      },
+      "presco_acces": {
+        "achevement_niveau": 0.63,
+        "achevement_tendance": 0.57,
+        "ecart_genre_achevement": -0.45,
+        "reussite_cep": 0.04,
+        "choc_ecoles_effectifs": 0.36,
+        "entrees_cp1": 0.43,
+        "scolarisation_tbs": 0.62,
+        "presco_acces": 1.0
+      }
+    },
+    "paires_redondantes": [
+      {
+        "a": "achevement_niveau",
+        "b": "achevement_tendance",
+        "rho": 0.89
+      },
+      {
+        "a": "achevement_niveau",
+        "b": "choc_ecoles_effectifs",
+        "rho": 0.81
+      },
+      {
+        "a": "achevement_niveau",
+        "b": "scolarisation_tbs",
+        "rho": 0.93
+      },
+      {
+        "a": "achevement_tendance",
+        "b": "choc_ecoles_effectifs",
+        "rho": 0.8
+      },
+      {
+        "a": "ecart_genre_achevement",
+        "b": "scolarisation_tbs",
+        "rho": -0.81
+      },
+      {
+        "a": "choc_ecoles_effectifs",
+        "b": "scolarisation_tbs",
+        "rho": 0.85
+      }
+    ],
+    "seuil": 0.8
+  },
+  "validation": {
+    "convergente": {
+      "disponible": true,
+      "rho": 0.92,
+      "p_permutation": 0.0002,
+      "n_regions": 13,
+      "association": "forte",
+      "lecture": "Association forte entre les résultats (achèvement et CEP) et les facteurs d'accès/perturbation (Spearman 0.92, 13 régions). Une association n'est pas une cause."
+    },
+    "attentes": {
+      "disponible": false,
+      "raison": "aucune région attendue renseignée dans config.yaml (validation.regions_attendues_vulnerables)"
+    }
+  },
+  "historique": {
+    "disponible": true,
+    "annees": [
+      "2022/23",
+      "2023/24",
+      "2024/25"
+    ],
+    "spearman_consecutifs": {
+      "2022/23 -> 2023/24": 1.0,
+      "2023/24 -> 2024/25": 0.98
+    },
+    "sauts": [],
+    "seuil_saut": 4
+  },
+  "annee_choc": 2022,
+  "indicateurs": {
+    "achevement_niveau": {
+      "sens": "bas",
+      "sources": [
+        "primaire_achevement_region"
+      ],
+      "label": "Taux d'achèvement récent (moyenne des dernières années, plafonné à 100)"
+    },
+    "achevement_tendance": {
+      "sens": "bas",
+      "sources": [
+        "primaire_achevement_region"
+      ],
+      "label": "Écart de l'achèvement récent par rapport à la période d'avant le choc 2022/23 (points)"
+    },
+    "ecart_genre_achevement": {
+      "sens": "haut",
+      "sources": [
+        "primaire_achevement_region"
+      ],
+      "label": "Écart filles-garçons d'achèvement (valeur absolue)",
+      "note": "Mesure la disparité, pas un désavantage présumé des filles : le sens de l'écart est conservé à part."
+    },
+    "choc_ecoles_effectifs": {
+      "sens": "haut",
+      "sources": [
+        "primaire_effectifs_region",
+        "primaire_ecoles_region"
+      ],
+      "label": "Perte d'élèves et d'écoles liée au choc 2022/23 (pic et déficit résiduel)",
+      "note": "Signal de perturbation scolaire : une baisse d'effectifs ou d'écoles ne prouve pas à elle seule des abandons."
+    },
+    "entrees_cp1": {
+      "sens": "bas",
+      "sources": [
+        "primaire_nouveaux_cp1_region"
+      ],
+      "label": "Évolution des nouveaux inscrits en CP1 par rapport à avant le choc"
+    },
+    "reussite_cep": {
+      "sens": "bas",
+      "sources": [
+        "primaire_cep_region"
+      ],
+      "label": "Taux de réussite au CEP récent",
+      "note": "Calculé sur les candidats : une forte sortie avant le CEP peut le masquer. À lire avec prudence."
+    },
+    "scolarisation_tbs": {
+      "sens": "bas",
+      "sources": [
+        "primaire_tbs_region"
+      ],
+      "label": "Taux brut de scolarisation au primaire (plafonné à 100)",
+      "note": "Un TBS supérieur à 100 reflète aussi des élèves hors âge et des redoublants ; il est plafonné à 100."
+    },
+    "presco_acces": {
+      "sens": "bas",
+      "sources": [
+        "prescolaire_T5"
+      ],
+      "label": "TBS du préscolaire (accès précoce)",
+      "note": "Lien indirect avec le primaire : poids faible."
+    }
+  },
+  "tableaux_absents": [],
+  "ruptures_detectees_audit": {
+    "primaire_effectifs_region": {
+      "2018/2019": "1/13",
+      "2022/2023": "2/13",
+      "2023/2024": "1/13"
+    },
+    "primaire_effectifs_statut": {},
+    "primaire_effectifs_milieu": {},
+    "primaire_effectifs_niveau": {},
+    "primaire_nouveaux_cp1_region": {
+      "2018/2019": "1/13",
+      "2022/2023": "1/13",
+      "2023/2024": "4/13",
+      "2024/2025": "1/13"
+    },
+    "primaire_tba_region": {
+      "2018/2019": "1/13",
+      "2021/2022": "1/13",
+      "2022/2023": "2/13",
+      "2023/2024": "4/13"
+    },
+    "primaire_tbs_region": {
+      "2018/2019": "1/13",
+      "2021/2022": "1/13",
+      "2022/2023": "2/13",
+      "2023/2024": "1/13"
+    },
+    "primaire_achevement_region": {
+      "2018/2019": "1/13",
+      "2020/2021": "1/13",
+      "2022/2023": "3/13"
+    },
+    "primaire_cep_region": {
+      "2018/2019": "1/13",
+      "2019/2020": "2/13",
+      "2022/2023": "1/13"
+    },
+    "primaire_ecoles_region": {
+      "2018/2019": "4/39",
+      "2019/2020": "2/39",
+      "2020/2021": "4/39",
+      "2021/2022": "5/39",
+      "2022/2023": "10/39",
+      "2023/2024": "3/39",
+      "2024/2025": "1/39"
+    },
+    "prescolaire_T1": {
+      "2016/2017": "4/13",
+      "2017/2018": "2/13",
+      "2018/2019": "4/13",
+      "2019/2020": "2/13",
+      "2020/2021": "1/13",
+      "2022/2023": "2/13",
+      "2023/2024": "1/13",
+      "2024/2025": "7/13"
+    },
+    "prescolaire_T2": {
+      "2016/2017": "2/4",
+      "2018/2019": "1/4",
+      "2024/2025": "1/4"
+    },
+    "prescolaire_T3": {
+      "2018/2019": "1/4",
+      "2022/2023": "1/4",
+      "2024/2025": "1/4"
+    },
+    "prescolaire_T4": {
+      "2018/2019": "2/7",
+      "2024/2025": "2/7"
+    },
+    "prescolaire_T5": {
+      "2016/2017": "4/13",
+      "2017/2018": "2/13",
+      "2020/2021": "10/13",
+      "2021/2022": "1/13",
+      "2022/2023": "2/13",
+      "2023/2024": "1/13",
+      "2024/2025": "7/13"
+    },
+    "prescolaire_T6": {},
+    "prescolaire_T7": {
+      "2016/2017": "30/39",
+      "2017/2018": "16/39",
+      "2018/2019": "14/39",
+      "2019/2020": "21/39",
+      "2020/2021": "19/39",
+      "2021/2022": "9/39",
+      "2022/2023": "9/39",
+      "2023/2024": "13/39",
+      "2024/2025": "20/39"
+    },
+    "prescolaire_T8": {
+      "2016/2017": "24/39",
+      "2017/2018": "19/39",
+      "2018/2019": "16/39",
+      "2019/2020": "13/39",
+      "2020/2021": "11/39",
+      "2021/2022": "10/39",
+      "2022/2023": "10/39",
+      "2023/2024": "16/39",
+      "2024/2025": "16/39"
+    }
+  },
+  "limites": [
+    "Unité d'analyse : 13 régions ; le classement est relatif et dépend des régions comparées.",
+    "Facteurs associés, pas causes : aucune causalité n'est établie.",
+    "Insécurité, pauvreté, enseignants et distances ne sont pas dans les données : le choc de 2022/23 (écoles, effectifs) sert de signal de perturbation indirect.",
+    "Les taux bruts sont plafonnés à 100 ; le taux de réussite au CEP est calculé sur les candidats et peut masquer des sorties avant l'examen.",
+    "Les données agrégées ne suivent pas les mêmes élèves : le score ne mesure pas des abandons.",
+    "Les valeurs manquantes ne sont pas imputées ; les poids sont renormalisés. La confiance affichée décrit la couverture des données, pas une confiance statistique."
+  ]
+}

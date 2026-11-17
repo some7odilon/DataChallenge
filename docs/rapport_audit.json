@@ -1,0 +1,229 @@
+{
+  "primaire_effectifs_region": {
+    "type": "effectif",
+    "lignes_initiales": 420,
+    "lignes_finales": 390,
+    "regions_manquantes": [],
+    "ruptures_par_annee": {
+      "2018/2019": "1/13",
+      "2022/2023": "2/13",
+      "2023/2024": "1/13"
+    },
+    "valeurs_manquantes": 0
+  },
+  "primaire_effectifs_statut": {
+    "type": "effectif",
+    "lignes_initiales": 90,
+    "lignes_finales": 90,
+    "regions_manquantes": [],
+    "ruptures_par_annee": {},
+    "valeurs_manquantes": 0
+  },
+  "primaire_effectifs_milieu": {
+    "type": "effectif",
+    "lignes_initiales": 90,
+    "lignes_finales": 90,
+    "regions_manquantes": [],
+    "ruptures_par_annee": {},
+    "valeurs_manquantes": 0
+  },
+  "primaire_effectifs_niveau": {
+    "type": "effectif",
+    "lignes_initiales": 450,
+    "lignes_finales": 450,
+    "regions_manquantes": [],
+    "ruptures_par_annee": {},
+    "valeurs_manquantes": 0
+  },
+  "primaire_nouveaux_cp1_region": {
+    "type": "effectif",
+    "lignes_initiales": 420,
+    "lignes_finales": 390,
+    "regions_manquantes": [],
+    "ruptures_par_annee": {
+      "2018/2019": "1/13",
+      "2022/2023": "1/13",
+      "2023/2024": "4/13",
+      "2024/2025": "1/13"
+    },
+    "valeurs_manquantes": 0
+  },
+  "primaire_tba_region": {
+    "type": "taux_brut",
+    "lignes_initiales": 450,
+    "lignes_finales": 390,
+    "regions_manquantes": [],
+    "ruptures_par_annee": {
+      "2018/2019": "1/13",
+      "2021/2022": "1/13",
+      "2022/2023": "2/13",
+      "2023/2024": "4/13"
+    },
+    "valeurs_manquantes": 0
+  },
+  "primaire_tbs_region": {
+    "type": "taux_brut",
+    "lignes_initiales": 420,
+    "lignes_finales": 390,
+    "regions_manquantes": [],
+    "ruptures_par_annee": {
+      "2018/2019": "1/13",
+      "2021/2022": "1/13",
+      "2022/2023": "2/13",
+      "2023/2024": "1/13"
+    },
+    "valeurs_manquantes": 0
+  },
+  "primaire_achevement_region": {
+    "type": "taux_achevement",
+    "lignes_initiales": 420,
+    "lignes_finales": 390,
+    "regions_manquantes": [],
+    "ruptures_par_annee": {
+      "2018/2019": "1/13",
+      "2020/2021": "1/13",
+      "2022/2023": "3/13"
+    },
+    "valeurs_manquantes": 0
+  },
+  "primaire_cep_region": {
+    "type": "taux_pct",
+    "lignes_initiales": 420,
+    "lignes_finales": 390,
+    "regions_manquantes": [],
+    "ruptures_par_annee": {
+      "2018/2019": "1/13",
+      "2019/2020": "2/13",
+      "2022/2023": "1/13"
+    },
+    "valeurs_manquantes": 0
+  },
+  "primaire_ecoles_region": {
+    "type": "nombre",
+    "lignes_initiales": 420,
+    "lignes_finales": 390,
+    "regions_manquantes": [],
+    "ruptures_par_annee": {
+      "2018/2019": "4/39",
+      "2019/2020": "2/39",
+      "2020/2021": "4/39",
+      "2021/2022": "5/39",
+      "2022/2023": "10/39",
+      "2023/2024": "3/39",
+      "2024/2025": "1/39"
+    },
+    "valeurs_manquantes": 0
+  },
+  "prescolaire_T1": {
+    "type": "effectif",
+    "lignes_initiales": 420,
+    "lignes_finales": 390,
+    "regions_manquantes": [],
+    "ruptures_par_annee": {
+      "2016/2017": "4/13",
+      "2017/2018": "2/13",
+      "2018/2019": "4/13",
+      "2019/2020": "2/13",
+      "2020/2021": "1/13",
+      "2022/2023": "2/13",
+      "2023/2024": "1/13",
+      "2024/2025": "7/13"
+    },
+    "valeurs_manquantes": 0
+  },
+  "prescolaire_T2": {
+    "type": "effectif",
+    "lignes_initiales": 120,
+    "lignes_finales": 120,
+    "regions_manquantes": [],
+    "ruptures_par_annee": {
+      "2016/2017": "2/4",
+      "2018/2019": "1/4",
+      "2024/2025": "1/4"
+    },
+    "valeurs_manquantes": 0
+  },
+  "prescolaire_T3": {
+    "type": "effectif",
+    "lignes_initiales": 96,
+    "lignes_finales": 96,
+    "regions_manquantes": [],
+    "ruptures_par_annee": {
+      "2018/2019": "1/4",
+      "2022/2023": "1/4",
+      "2024/2025": "1/4"
+    },
+    "valeurs_manquantes": 15
+  },
+  "prescolaire_T4": {
+    "type": "effectif",
+    "lignes_initiales": 210,
+    "lignes_finales": 168,
+    "regions_manquantes": [],
+    "ruptures_par_annee": {
+      "2018/2019": "2/7",
+      "2024/2025": "2/7"
+    },
+    "valeurs_manquantes": 0
+  },
+  "prescolaire_T5": {
+    "type": "taux_brut",
+    "lignes_initiales": 420,
+    "lignes_finales": 312,
+    "regions_manquantes": [],
+    "ruptures_par_annee": {
+      "2016/2017": "4/13",
+      "2017/2018": "2/13",
+      "2020/2021": "10/13",
+      "2021/2022": "1/13",
+      "2022/2023": "2/13",
+      "2023/2024": "1/13",
+      "2024/2025": "7/13"
+    },
+    "valeurs_manquantes": 0
+  },
+  "prescolaire_T6": {
+    "type": "indice",
+    "lignes_initiales": 140,
+    "lignes_finales": 130,
+    "regions_manquantes": [],
+    "ruptures_par_annee": {},
+    "valeurs_manquantes": 0
+  },
+  "prescolaire_T7": {
+    "type": "nombre",
+    "lignes_initiales": 530,
+    "lignes_finales": 390,
+    "regions_manquantes": [],
+    "ruptures_par_annee": {
+      "2016/2017": "30/39",
+      "2017/2018": "16/39",
+      "2018/2019": "14/39",
+      "2019/2020": "21/39",
+      "2020/2021": "19/39",
+      "2021/2022": "9/39",
+      "2022/2023": "9/39",
+      "2023/2024": "13/39",
+      "2024/2025": "20/39"
+    },
+    "valeurs_manquantes": 0
+  },
+  "prescolaire_T8": {
+    "type": "nombre",
+    "lignes_initiales": 530,
+    "lignes_finales": 390,
+    "regions_manquantes": [],
+    "ruptures_par_annee": {
+      "2016/2017": "24/39",
+      "2017/2018": "19/39",
+      "2018/2019": "16/39",
+      "2019/2020": "13/39",
+      "2020/2021": "11/39",
+      "2021/2022": "10/39",
+      "2022/2023": "10/39",
+      "2023/2024": "16/39",
+      "2024/2025": "16/39"
+    },
+    "valeurs_manquantes": 0
+  }
+}

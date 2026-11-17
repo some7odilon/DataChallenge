@@ -1,0 +1,99 @@
+<div class="content-wrap" id="tableau">
+      <section class="intro">
+        <div>
+          <div class="eyebrow"><span class="eyebrow-line"></span> OBSERVATOIRE DE L’ÉDUCATION</div>
+          <h1>Éclairer les <em>décisions.</em></h1>
+          <p class="intro-text">Une lecture territoriale des vulnérabilités scolaires au primaire, pour orienter les priorités et les moyens.</p>
+        </div>
+        <div class="intro-stamp"><span class="stamp-star">✳</span><span>DONNÉES<br><strong>{{ referenceYear() }}</strong><br>GÉNÉRÉ LE {{ generatedDate() }}</span></div>
+      </section>
+
+      <section class="notice" aria-label="Avertissement méthodologique">
+        <span class="notice-icon">i</span>
+        <p><strong>À LIRE AVEC PRÉCAUTION</strong> {{ metadata()?.lecture_du_score }}</p>
+      </section>
+
+      @if (loading()) {
+        <div class="state-card">Chargement des données régionales…</div>
+      } @else if (loadError()) {
+        <div class="state-card error-state">Les données n’ont pas pu être chargées. Vérifiez la configuration des fichiers JSON.</div>
+      } @else {
+        <section class="metrics-grid" aria-label="Indicateurs clés">
+          <article class="metric-card metric-featured"><div class="metric-top"><span>RÉGIONS SUIVIES</span><span class="metric-symbol">◉</span></div><strong class="metric-value">{{ regions().length }}<small> / 13</small></strong><div class="metric-foot"><span class="tiny-dot"></span> Couverture nationale</div></article>
+          <article class="metric-card"><div class="metric-top"><span>PRIORITAIRES</span><span class="metric-symbol priority-text">↗</span></div><strong class="metric-value">{{ priorityCount() }}<small> régions</small></strong><div class="metric-foot"><span class="tag-dot priority-dot"></span> Vulnérabilité élevée</div></article>
+          <article class="metric-card"><div class="metric-top"><span>À SURVEILLER</span><span class="metric-symbol watch-text">◇</span></div><strong class="metric-value">{{ watchCount() }}<small> régions</small></strong><div class="metric-foot"><span class="tag-dot watch-dot"></span> Signaux à suivre</div></article>
+          <article class="metric-card"><div class="metric-top"><span>ÉCHELLE DE L’INDICE</span><span class="metric-symbol">↕</span></div><strong class="metric-value range-value">{{ formatScore(lowestScore()) }} <i>—</i> {{ formatScore(highestScore()) }}</strong><div class="metric-foot">Score comparatif · de 0 à 100</div></article>
+        </section>
+
+        <section class="dashboard-grid">
+          <article class="panel ranking-panel" id="classement">
+            <div class="panel-heading">
+              <div><div class="section-kicker">LECTURE TERRITORIALE</div><h2>Classement des régions</h2><p class="panel-subtitle">Les régions en tête présentent les signaux de vulnérabilité les plus élevés.</p></div>
+              <span class="count-pill">{{ filteredRegions().length }} RÉSULTATS</span>
+            </div>
+
+            <div class="toolbar">
+              <label class="search-box"><span>⌕</span><input aria-label="Rechercher une région" placeholder="Rechercher une région…" [value]="search()" (input)="search.set($any($event.target).value)" /></label>
+              <div class="filter-row" aria-label="Filtrer par niveau">
+                <button [class.selected]="activeFilter() === 'tous'" (click)="selectFilter('tous')">Toutes</button>
+                <button [class.selected]="activeFilter() === 'prioritaire'" (click)="selectFilter('prioritaire')">Prioritaires</button>
+                <button [class.selected]="activeFilter() === 'à surveiller'" (click)="selectFilter('à surveiller')">À surveiller</button>
+                <button [class.selected]="activeFilter() === 'moins exposée'" (click)="selectFilter('moins exposée')">Moins exposées</button>
+              </div>
+            </div>
+
+            <div class="region-list">
+              @for (region of filteredRegions(); track region.code) {
+                <button class="region-row" [class.active-row]="selectedCode() === region.code" (click)="selectRegion(region)" [attr.aria-label]="'Voir la fiche de ' + region.region">
+                  <span class="rank-number">{{ region.rang.toString().padStart(2, '0') }}</span>
+                  <span class="region-main"><span class="region-name">{{ region.region }}</span><span class="region-code">{{ region.code }} <i>·</i> {{ region.profile?.profil ?? 'Profil non renseigné' }}</span></span>
+                  <span class="score-track"><span [class]="'score-fill ' + (region.niveau === 'prioritaire' ? 'fill-priority' : region.niveau === 'à surveiller' ? 'fill-watch' : 'fill-low')" [style.width.%]="region.score"></span></span>
+                  <span class="score-number">{{ formatScore(region.score) }}</span>
+                  <span [class]="'status-pill ' + (region.niveau === 'prioritaire' ? 'status-priority' : region.niveau === 'à surveiller' ? 'status-watch' : 'status-low')">{{ region.niveau }}</span>
+                  <span class="row-arrow">↗</span>
+                </button>
+              } @empty {
+                <div class="empty-state">Aucune région ne correspond à la recherche.</div>
+              }
+            </div>
+            <div class="list-footer"><span>INDICE COMPOSITE DE VULNÉRABILITÉ</span><span>ÉCHELLE 0 — 100</span></div>
+          </article>
+
+          @if (selectedRegion(); as region) {
+            <article class="panel detail-panel" id="analyse">
+              <div class="detail-topline"><span>FICHE RÉGIONALE</span><span class="detail-code">{{ region.code }}</span></div>
+              <div class="detail-title-row"><div><div class="section-kicker">RANG {{ region.rang }} SUR {{ regions().length }}</div><h2>{{ region.region }}</h2></div><span [class]="'status-pill ' + (region.niveau === 'prioritaire' ? 'status-priority' : region.niveau === 'à surveiller' ? 'status-watch' : 'status-low')">{{ region.niveau }}</span></div>
+
+              <div class="score-summary"><div><span class="summary-label">INDICE DE VULNÉRABILITÉ</span><div class="big-score">{{ formatScore(region.score) }}<small>/100</small></div></div><div class="rank-range"><span>RANG POSSIBLE</span><strong>{{ region.rang_p5 }}<i>—</i>{{ region.rang_p95 }}</strong><small>selon les scénarios</small></div></div>
+
+              <div class="chart-header"><div><strong>ACHÈVEMENT AU PRIMAIRE</strong><span>Évolution du taux · filles et garçons</span></div><span class="chart-unit">%</span></div>
+              <div class="chart-box">
+                <div class="chart-guides"><span>100</span><span>50</span><span>0</span></div>
+                <svg viewBox="0 0 280 100" role="img" [attr.aria-label]="'Évolution de l’achèvement au primaire dans la région ' + region.region">
+                  <line x1="0" y1="20" x2="280" y2="20" class="chart-gridline"/><line x1="0" y1="56" x2="280" y2="56" class="chart-gridline"/><line x1="0" y1="92" x2="280" y2="92" class="chart-gridline"/>
+                  <polyline [attr.points]="getTrendPoints(region.completion)" class="chart-line"/><circle [attr.cx]="280" [attr.cy]="getTrendEndY(region.completion)" r="3.5" class="chart-end"/>
+                </svg>
+              </div>
+              <div class="chart-years"><span>{{ completionYears[0] }}</span><span>{{ completionYears[1] }}</span></div>
+              <div class="chart-legend"><span><i></i> Taux d’achèvement total</span><strong>{{ formatPercent(region.completion?.['2024']) }}</strong></div>
+
+              <div class="signals-block">
+                <div class="signals-heading"><span class="section-kicker">SIGNAUX LES PLUS MARQUÉS</span><span>INDICE 0—100</span></div>
+                @for (factor of (region.profile?.facteurs_dominants ?? []).slice(0, 3); track factor) {
+                  <div class="signal-row"><span>{{ indicatorLabel(factor) }}</span><div class="signal-track"><i [style.width.%]="indicatorRisk(region, factor)"></i></div><strong>{{ formatScore(region.indicators?.[factor]?.risque ?? undefined) }}</strong></div>
+                }
+              </div>
+
+              <div class="profile-block"><div class="section-kicker">PROFIL DOMINANT</div><h3>{{ region.profile?.profil ?? 'Profil non renseigné' }}</h3><p>{{ region.profile?.recommandation ?? 'Aucune recommandation disponible.' }}</p></div>
+              @if (region.profile?.groupe_en_retrait) {
+                <div class="group-note">GROUPE EN RETRAIT <strong>{{ region.profile?.groupe_en_retrait }}</strong></div>
+              }
+              <div class="detail-footer"><span><i class="reliable-dot"></i> Confiance {{ region.confiance }}</span><span>Classement {{ region.classement_robuste ? 'stable' : 'à interpréter avec prudence' }}</span></div>
+              <a class="profile-page-link" routerLink="/fiche-regionale" [queryParams]="{ region: region.code }">OUVRIR LA FICHE RÉGIONALE <span>→</span></a>
+            </article>
+          }
+        </section>
+
+        <footer class="page-footer"><span>ÉCLAIREUR <i>·</i> MENAPLN BURKINA FASO</span><span>Les données constituent des signaux indirects et doivent être interprétées avec le contexte local.</span></footer>
+      }
+</div>

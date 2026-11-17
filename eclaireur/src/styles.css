@@ -1,0 +1,36 @@
+html { min-width: 320px; min-height: 100%; background: #0F172A; scroll-behavior: smooth; }
+body { min-width: 320px; min-height: 100vh; margin: 0; font-family: Inter, 'Segoe UI', Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+button, input { font: inherit; }
+button { -webkit-tap-highlight-color: transparent; }
+::selection { background: #d9c7a1; color: #181916; }
+
+/* Shared readability and rounded controls across every routed interface. */
+:root {
+  font-size: 16px;
+  color-scheme: dark;
+}
+
+body {
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+button,
+input,
+select,
+textarea,
+[role="button"] {
+  border-radius: 10px;
+}
+
+[class*="card"],
+[class*="panel"],
+[class*="field"],
+[class*="tile"],
+[class*="callout"] {
+  border-radius: 12px;
+}
+
+@media (max-width: 760px) {
+  body { font-size: 15px; }
+}

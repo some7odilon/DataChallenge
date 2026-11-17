@@ -1,0 +1,14 @@
+﻿,region,score,couverture_poids,rang,rang_p5,rang_p95,rang_median,prob_prioritaire,profil
+BMH,BOUCLE DU MOUHOUN,80.04680057511582,1.0,1.0,1.0,4.0,2.0,1.0,Perturbation scolaire
+EST,EST,79.70132928179957,1.0,2.0,1.0,3.0,2.0,1.0,Entrée dans le cycle fragile
+SAH,SAHEL,76.55108922125248,1.0,3.0,1.0,4.0,2.0,0.9993827160493827,Entrée dans le cycle fragile
+CNO,CENTRE-NORD,67.61780508218479,1.0,4.0,3.0,4.0,4.0,0.9932098765432099,Perturbation scolaire
+NOR,NORD,49.23917254885001,1.0,5.0,5.0,6.0,5.0,0.007407407407407408,Disparités filles-garçons
+CES,CENTRE-EST,39.21958196423013,1.0,6.0,5.0,8.0,6.0,0.0,Disparités filles-garçons
+CAS,CASCADES,31.76491995783241,1.0,7.0,6.0,10.0,7.0,0.0,Faible achèvement du cycle
+HBS,HAUTS-BASSINS,30.126290649106974,1.0,8.0,6.0,10.0,8.0,0.0,Disparités filles-garçons
+SOU,SUD-OUEST,25.866118332888234,1.0,9.0,8.0,12.0,9.0,0.0,Faible achèvement du cycle
+COU,CENTRE-OUEST,22.85163811327112,1.0,10.0,6.0,12.0,10.0,0.0,Disparités filles-garçons
+PCL,PLATEAU-CENTRAL,18.867677952349077,1.0,11.0,9.0,12.0,11.0,0.0,Disparités filles-garçons
+CSU,CENTRE-SUD,15.89473938090961,1.0,12.0,10.0,12.0,12.0,0.0,Disparités filles-garçons
+CEN,CENTRE,9.649903581230907,1.0,13.0,13.0,13.0,13.0,0.0,Disparités filles-garçons

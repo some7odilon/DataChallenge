@@ -1,0 +1,92 @@
+<div class="profile-page">
+  @if (loading()) {
+    <div class="profile-state">Chargement de la fiche régionale…</div>
+  } @else if (loadError()) {
+    <div class="profile-state error">Impossible de charger les données de la fiche.</div>
+  } @else if (selectedRegion(); as region) {
+    <section class="region-command">
+      <div class="region-identity">
+        <div class="identity-meta"><span>DIRECTION RÉGIONALE · MENAPLN</span><i>·</i><span>CODE : {{ region.code }}</span><i>·</i><span>SESSION {{ referenceYear() }}</span></div>
+        <div class="profile-title-row"><h1>Fiche régionale : <span>{{ region.region.toLocaleLowerCase('fr') }}</span></h1><span [class]="'priority-badge ' + (region.niveau === 'prioritaire' ? 'badge-priority' : region.niveau === 'à surveiller' ? 'badge-watch' : 'badge-lower')">{{ region.niveau }}</span></div>
+      </div>
+      <div class="region-actions">
+        <label class="region-picker"><span>Région</span><select [value]="region.code" (change)="selectRegion($any($event.target).value)">@for (item of regions(); track item.code) { <option [value]="item.code">{{ item.region }} · rang {{ item.rang }}</option> }</select></label>
+        <button class="action-button print-button" type="button" (click)="printPage()"><span>↥</span> Exporter en PDF</button>
+        <a class="action-button compare-button" routerLink="/carte-des-priorites" [queryParams]="{ region: region.code }"><span>⇄</span> Voir la carte</a>
+      </div>
+    </section>
+
+    <section class="metric-strip">
+      <article class="summary-card score-card"><span>INDICE DE VULNÉRABILITÉ</span><strong>{{ formatScore(region.score) }}<small> / 100</small></strong><em>{{ region.niveau }}</em></article>
+      <article class="summary-card"><span>RANG NATIONAL</span><strong>{{ region.rang }}<small>{{ rankSuffix(region.rang) }} / {{ regions().length }}</small></strong><em>Classement relatif</em></article>
+      <article class="summary-card"><span>INTERVALLE DE CLASSEMENT</span><strong>{{ region.rang_p5 }} <i>—</i> {{ region.rang_p95 }}</strong><em>Du 5e au 95e percentile</em></article>
+      <article class="summary-card profile-summary"><span>PROFIL TERRITORIAL</span><strong>{{ region.profile?.profil ?? 'Non renseigné' }}</strong><em>Confiance {{ region.confiance }}</em></article>
+    </section>
+
+    <section class="method-note"><span class="info-mark">i</span><p><strong>CADRE D’INTERPRÉTATION</strong> {{ metadata()?.lecture_du_score }} {{ metadata()?.lecture_confiance }}</p></section>
+
+    <section class="analysis-grid">
+      <article class="analysis-card action-card">
+        <div class="card-kicker"><span>AXE STRATÉGIQUE 01</span><span class="subtle-tag">GUIDE MENAPLN</span></div>
+        <h2>Profil d’action territorial</h2>
+        <div class="profile-type"><span>TYPOLOGIE D’INTERVENTION</span><strong>{{ region.profile?.profil ?? 'Profil non renseigné' }}</strong></div>
+        <div class="recommendation"><span class="recommendation-title"><i>✳</i> PISTE D’ACTION SUGGÉRÉE</span><p>{{ region.profile?.recommandation ?? 'Aucune recommandation disponible.' }}</p></div>
+        <div class="break-note"><span>RUPTURE MÉTHODOLOGIQUE À PRENDRE EN COMPTE</span><p>Le pipeline documente un choc de référence en {{ shockYearLabel() }}. Les écarts temporels autour de cette période sont des signaux de perturbation et demandent une lecture prudente.</p></div>
+        <div class="checklist"><span>FACTEURS À EXAMINER</span><ul>@for (factor of region.profile?.facteurs_dominants ?? []; track factor) { <li><i>›</i>{{ indicatorLabel(factor) }}</li> }</ul></div>
+      </article>
+
+      <article class="analysis-card factors-card">
+        <div class="card-kicker"><span>AXE STRATÉGIQUE 02</span><span class="subtle-tag">CONTRIBUTIONS PONDÉRÉES</span></div>
+        <h2>Facteurs dominants associés</h2>
+        <p class="card-description">Contribution des signaux les plus élevés au score de cette région. Les contributions sont descriptives et n’établissent pas de causalité.</p>
+        <div class="factor-list">
+          @for (factor of factors(); track factor.code; let index = $index) {
+            <div class="contribution-item">
+              <div class="contribution-title"><span>{{ index + 1 }}. {{ indicatorLabel(factor.code) }}</span><strong>{{ formatScore(factor.contribution) }} pts</strong></div>
+              <div class="contribution-track"><i [style.width.%]="factor.contribution"></i></div>
+              <div class="contribution-meta"><span>Signal normalisé : {{ formatScore(factor.risk) }} / 100</span><span>Poids : {{ formatPercent(factor.weight) }}</span></div>
+              <p>{{ metadata()?.justification_poids?.[factor.code] ?? 'Indicateur intégré au score régional.' }}</p>
+            </div>
+          } @empty {
+            <p class="no-factors">Aucune contribution détaillée disponible.</p>
+          }
+        </div>
+        <div class="formula-note">Les pondérations affichées proviennent des métadonnées du pipeline {{ metadata()?.genere_le }}.</div>
+      </article>
+
+      <article class="analysis-card trend-card">
+        <div class="card-kicker"><span>AXE STRATÉGIQUE 03</span><span class="subtle-tag">SÉRIE {{ completionYears().length }} ANS</span></div>
+        <h2>Achèvement au primaire</h2>
+        <p class="card-description">Taux observés par année et par genre. L’évolution agrégée ne suit pas les parcours des mêmes élèves.</p>
+        <div class="chart-frame">
+          <div class="chart-meta"><span>TAUX (%)</span><span>ANNÉE CIVILE · {{ completionYears()[0] }}—{{ completionYears()[completionYears().length - 1] }}</span></div>
+          <svg class="completion-chart" viewBox="0 0 400 220" role="img" [attr.aria-label]="'Taux d’achèvement primaire de ' + region.region">
+            <line class="chart-grid" x1="30" x2="390" y1="23" y2="23"/><line class="chart-grid" x1="30" x2="390" y1="68" y2="68"/><line class="chart-grid" x1="30" x2="390" y1="113" y2="113"/><line class="chart-grid" x1="30" x2="390" y1="158" y2="158"/><line class="chart-grid" x1="30" x2="390" y1="188" y2="188"/>
+            <text class="axis-label" x="2" y="27">100</text><text class="axis-label" x="8" y="72">75</text><text class="axis-label" x="8" y="117">50</text><text class="axis-label" x="8" y="162">25</text><text class="axis-label" x="17" y="192">0</text>
+            <rect class="shock-band" [attr.x]="getShockX() - 8" y="15" width="16" height="173"/><line class="shock-line" [attr.x1]="getShockX()" [attr.x2]="getShockX()" y1="15" y2="188"/>
+            @for (series of comparisonSeries(); track series.code) { <polyline [class]="series.cssClass" [attr.points]="getSeriesPoints(series.code)"/> }
+          </svg>
+          <div class="chart-years"><span>{{ completionYears()[0] }}</span><span>Choc {{ shockYearLabel() }}</span><span>{{ completionYears()[completionYears().length - 1] }}</span></div>
+          <div class="chart-legend">@for (series of comparisonSeries(); track series.code) { <span><i [class]="series.cssClass"></i>{{ series.label }}</span> }</div>
+        </div>
+        <div class="latest-values"><span>DERNIÈRE ANNÉE DISPONIBLE</span><strong>{{ formatPercent(region.completionByGender?.T?.[completionYears()[completionYears().length - 1]]) }} <small>total</small></strong><span>{{ formatPercent(region.completionByGender?.F?.[completionYears()[completionYears().length - 1]]) }} filles · {{ formatPercent(region.completionByGender?.G?.[completionYears()[completionYears().length - 1]]) }} garçons</span></div>
+      </article>
+    </section>
+
+    <section class="audit-card">
+      <div class="audit-heading"><div><span class="audit-kicker">AUDIT DÉTAILLÉ</span><h2>Matrice des indicateurs mobilisés</h2></div><div class="audit-count"><strong>{{ indicatorCount() }}</strong> / {{ indicatorRows().length }} valeurs disponibles</div></div>
+      <div class="table-scroll"><table>
+        <thead><tr><th>N°</th><th>Indicateur</th><th>Famille de source</th><th>Valeur</th><th>Risque normalisé</th><th>Disponibilité</th></tr></thead>
+        <tbody>
+          @for (row of indicatorRows(); track row.code; let index = $index) {
+            <tr [class.missing-row]="row.valeur === null || row.valeur === undefined"><td class="indicator-number">IND-{{ (index + 1).toString().padStart(2, '0') }}</td><td><strong>{{ indicatorLabel(row.code) }}</strong><small>{{ metadata()?.indicateurs?.[row.code]?.note }}</small></td><td>{{ sourceLabels(metadata()?.indicateurs?.[row.code]?.sources) }}</td><td class="raw-value">{{ formatRaw(row.valeur) }}</td><td><div class="risk-cell"><span class="risk-track"><i [style.width.%]="row.risque ?? 0"></i></span><strong>{{ formatScore(row.risque ?? undefined) }}</strong></div></td><td><span [class]="'availability ' + (row.valeur === null || row.valeur === undefined ? 'unavailable' : 'available')">{{ row.valeur === null || row.valeur === undefined ? 'Non disponible' : 'Disponible' }}</span></td></tr>
+          } @empty {
+            <tr><td colspan="6" class="empty-row">Aucun indicateur disponible pour cette région.</td></tr>
+          }
+        </tbody>
+      </table></div>
+      <div class="audit-footnote"><span>{{ metadata()?.lecture_du_score }}</span><span>Fiche générée à partir des JSON · {{ metadata()?.genere_le }}</span></div>
+    </section>
+    <footer class="profile-footer"><span>ÉCLAIREUR · MENAPLN BURKINA FASO</span><a routerLink="/carte-des-priorites" [queryParams]="{ region: region.code }">Revenir à la carte des priorités ↑</a></footer>
+  }
+</div>

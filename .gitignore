@@ -1,0 +1,32 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Angular / Node
+eclaireur/node_modules/
+eclaireur/dist/
+eclaireur/.angular/
+eclaireur/coverage/
+
+# IDE, système et secrets locaux
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+.env
+.env.*
+!.env.example
+.aws/
+.codex/
+.agents/
+
+# Fichiers de travail redondants ou non documentés
+/dataChallenge.xlsx
+/screen.png
+/screen1.png
+/code.html

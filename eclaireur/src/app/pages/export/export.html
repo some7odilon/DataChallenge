@@ -1,0 +1,31 @@
+<section class="page export-page">
+  <header class="page-heading"><div><span class="eyebrow">OUTILS DE DIFFUSION</span><h1>Exporter les données et imprimer un rapport</h1><p>Téléchargez les données locales ou préparez une synthèse régionale imprimable.</p></div></header>
+  <div class="notice"><strong>Rappel de lecture</strong><p>Le classement décrit une vulnérabilité éducative relative. Il ne mesure pas le décrochage et ne suit pas les parcours individuels.</p></div>
+
+  <div class="columns">
+    <div class="left-column">
+      <section class="panel"><span class="eyebrow">SECTION 01 · ANALYSE</span><h2>Données consolidées</h2><p>Fichiers JSON de référence et classement des 13 régions.</p>
+        <div class="download-list"><article><div><strong>Classement régional · CSV</strong><span>Scores, rangs, niveau de priorité et confiance</span></div><button type="button" (click)="downloadScores()">Télécharger CSV</button></article>
+          <article *ngFor="let file of ['indice.json','profils.json','indicateurs.json','series.json','metadata.json']"><div><strong>{{ file }}</strong><span>Données source du tableau de bord</span></div><button type="button" class="secondary" (click)="downloadJson(file)">Télécharger</button></article>
+        </div>
+      </section>
+      <section class="panel"><span class="eyebrow">SECTION 02 · RAPPORT</span><h2>Préparer une fiche régionale</h2>
+        <label class="field-label" for="region">Région à inclure</label><select id="region" [ngModel]="selectedCode()" (ngModelChange)="selectedCode.set($event)"><option *ngFor="let region of regions()" [value]="region.code">{{ region.region }}</option></select>
+        <fieldset><legend>Contenu du rapport</legend><label class="check-row"><input type="checkbox" [ngModel]="includeIndicators()" (ngModelChange)="includeIndicators.set($event)"> Inclure les indicateurs disponibles</label><label class="check-row"><input type="checkbox" checked disabled> Inclure la mention méthodologique obligatoire</label><label class="check-row"><input type="checkbox" [ngModel]="includeContacts()" (ngModelChange)="includeContacts.set($event)"> Réserver un espace pour les contacts régionaux</label></fieldset>
+        <button class="print-button" type="button" (click)="printReport()">Imprimer / Enregistrer en PDF</button><small>Dans la fenêtre d’impression, choisissez « Enregistrer au format PDF » pour créer un fichier PDF.</small>
+      </section>
+    </div>
+    <section class="panel preview"><div class="preview-head"><div><span class="eyebrow">APERÇU DU RAPPORT</span><h2>Synthèse régionale</h2></div><span class="paper-tag">FORMAT A4</span></div>
+      <article class="report-sheet"><div class="report-brand"><span class="brand-mark">É</span><div><strong>Éclaireur</strong><span>BURKINA FASO · AIDE À LA DÉCISION SCOLAIRE</span></div></div>
+        <div class="report-rule"></div><span class="eyebrow">FICHE RÉGIONALE · {{ year() }}</span><h2>{{ selectedRegion()?.region ?? 'Chargement des données…' }}</h2>
+        <div class="score-grid"><div><span>Score de vulnérabilité</span><strong>{{ selectedRegion()?.score | number:'1.1-1' }}<small>/100</small></strong></div><div><span>Rang régional</span><strong>{{ selectedRegion()?.rang ?? '—' }}<small> / {{ regions().length }}</small></strong></div></div>
+        <p><b>Niveau :</b> {{ selectedRegion()?.niveau ?? '—' }} &nbsp;·&nbsp; <b>Confiance :</b> {{ selectedRegion()?.confiance ?? '—' }}</p>
+        <div class="report-block"><h3>Lecture synthétique</h3><p>{{ selectedRegion()?.profile?.recommandation ?? 'Les données de cette région seront affichées ici.' }}</p></div>
+        <div class="report-block" *ngIf="includeIndicators()"><h3>Indicateurs disponibles</h3><ul><li *ngFor="let factor of selectedRegion()?.profile?.facteurs_dominants">{{ factor }}</li><li *ngIf="!selectedRegion()?.profile?.facteurs_dominants?.length">Aucun facteur dominant renseigné.</li></ul></div>
+        <div class="report-block disclaimer"><h3>Limite d’interprétation</h3><p>Ce score est un indicateur relatif basé sur des données agrégées. Il ne constitue ni une mesure du décrochage ni une preuve de causalité.</p></div>
+        <div class="contacts-placeholder" *ngIf="includeContacts()">Espace réservé aux contacts de la Direction régionale</div>
+        <footer>Éclaireur · Données {{ year() }} · Généré le {{ generatedAt | date:'longDate':'':'fr-FR' }}</footer>
+      </article>
+    </section>
+  </div>
+</section>

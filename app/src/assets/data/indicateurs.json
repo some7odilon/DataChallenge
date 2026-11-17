@@ -1,0 +1,496 @@
+{
+  "BMH": {
+    "achevement_niveau": {
+      "valeur": 34.5787,
+      "risque": 76.1753
+    },
+    "achevement_tendance": {
+      "valeur": -23.0339,
+      "risque": 100.0
+    },
+    "ecart_genre_achevement": {
+      "valeur": 5.9225,
+      "risque": 30.1695
+    },
+    "ecart_signe": {
+      "valeur": 5.9225,
+      "risque": null
+    },
+    "choc_ecoles_effectifs": {
+      "valeur": 0.3331,
+      "risque": 100.0
+    },
+    "entrees_cp1": {
+      "valeur": -0.1667,
+      "risque": 87.3512
+    },
+    "reussite_cep": {
+      "valeur": 72.8054,
+      "risque": 100.0
+    },
+    "scolarisation_tbs": {
+      "valeur": 53.3382,
+      "risque": 68.7938
+    },
+    "presco_acces": {
+      "valeur": 3.033,
+      "risque": 78.6365
+    }
+  },
+  "EST": {
+    "achevement_niveau": {
+      "valeur": 17.5287,
+      "risque": 100.0
+    },
+    "achevement_tendance": {
+      "valeur": -19.7268,
+      "risque": 100.0
+    },
+    "ecart_genre_achevement": {
+      "valeur": 3.6467,
+      "risque": 10.4522
+    },
+    "ecart_signe": {
+      "valeur": 3.6467,
+      "risque": null
+    },
+    "choc_ecoles_effectifs": {
+      "valeur": 0.2293,
+      "risque": 91.0407
+    },
+    "entrees_cp1": {
+      "valeur": -0.2337,
+      "risque": 100.0
+    },
+    "reussite_cep": {
+      "valeur": 85.9757,
+      "risque": 0.0
+    },
+    "scolarisation_tbs": {
+      "valeur": 26.8799,
+      "risque": 100.0
+    },
+    "presco_acces": {
+      "valeur": 1.5802,
+      "risque": 100.0
+    }
+  },
+  "SAH": {
+    "achevement_niveau": {
+      "valeur": 9.6378,
+      "risque": 100.0
+    },
+    "achevement_tendance": {
+      "valeur": -10.2971,
+      "risque": 58.5481
+    },
+    "ecart_genre_achevement": {
+      "valeur": 0.6038,
+      "risque": 0.0
+    },
+    "ecart_signe": {
+      "valeur": -0.6038,
+      "risque": null
+    },
+    "choc_ecoles_effectifs": {
+      "valeur": 0.165,
+      "risque": 65.3245
+    },
+    "entrees_cp1": {
+      "valeur": -0.2776,
+      "risque": 100.0
+    },
+    "reussite_cep": {
+      "valeur": 79.7834,
+      "risque": 58.976
+    },
+    "scolarisation_tbs": {
+      "valeur": 23.9231,
+      "risque": 100.0
+    },
+    "presco_acces": {
+      "valeur": 1.2085,
+      "risque": 100.0
+    }
+  },
+  "CNO": {
+    "achevement_niveau": {
+      "valeur": 30.6884,
+      "risque": 82.6037
+    },
+    "achevement_tendance": {
+      "valeur": -18.1045,
+      "risque": 93.3658
+    },
+    "ecart_genre_achevement": {
+      "valeur": 8.7004,
+      "risque": 54.2378
+    },
+    "ecart_signe": {
+      "valeur": 8.7004,
+      "risque": null
+    },
+    "choc_ecoles_effectifs": {
+      "valeur": 0.2573,
+      "risque": 100.0
+    },
+    "entrees_cp1": {
+      "valeur": -0.0122,
+      "risque": 50.925
+    },
+    "reussite_cep": {
+      "valeur": 83.7269,
+      "risque": 20.8333
+    },
+    "scolarisation_tbs": {
+      "valeur": 54.6423,
+      "risque": 66.8712
+    },
+    "presco_acces": {
+      "valeur": 7.3245,
+      "risque": 0.0
+    }
+  },
+  "NOR": {
+    "achevement_niveau": {
+      "valeur": 47.1637,
+      "risque": 55.3798
+    },
+    "achevement_tendance": {
+      "valeur": -19.0533,
+      "risque": 97.5971
+    },
+    "ecart_genre_achevement": {
+      "valeur": 12.2105,
+      "risque": 84.6494
+    },
+    "ecart_signe": {
+      "valeur": 12.2105,
+      "risque": null
+    },
+    "choc_ecoles_effectifs": {
+      "valeur": 0.0879,
+      "risque": 34.4517
+    },
+    "entrees_cp1": {
+      "valeur": 0.1945,
+      "risque": 2.1986
+    },
+    "reussite_cep": {
+      "valeur": 79.6261,
+      "risque": 60.4972
+    },
+    "scolarisation_tbs": {
+      "valeur": 90.5015,
+      "risque": 14.0037
+    },
+    "presco_acces": {
+      "valeur": 3.3596,
+      "risque": 72.6342
+    }
+  },
+  "CES": {
+    "achevement_niveau": {
+      "valeur": 50.995,
+      "risque": 49.049
+    },
+    "achevement_tendance": {
+      "valeur": -11.942,
+      "risque": 65.8839
+    },
+    "ecart_genre_achevement": {
+      "valeur": 9.5774,
+      "risque": 61.8358
+    },
+    "ecart_signe": {
+      "valeur": 9.5774,
+      "risque": null
+    },
+    "choc_ecoles_effectifs": {
+      "valeur": 0.105,
+      "risque": 41.3065
+    },
+    "entrees_cp1": {
+      "valeur": 0.1281,
+      "risque": 17.8532
+    },
+    "reussite_cep": {
+      "valeur": 86.219,
+      "risque": 0.0
+    },
+    "scolarisation_tbs": {
+      "valeur": 77.1984,
+      "risque": 33.6165
+    },
+    "presco_acces": {
+      "valeur": 6.0472,
+      "risque": 23.2318
+    }
+  },
+  "CAS": {
+    "achevement_niveau": {
+      "valeur": 53.9665,
+      "risque": 44.1387
+    },
+    "achevement_tendance": {
+      "valeur": -4.2291,
+      "risque": 31.4874
+    },
+    "ecart_genre_achevement": {
+      "valeur": 3.4359,
+      "risque": 8.626
+    },
+    "ecart_signe": {
+      "valeur": 3.4359,
+      "risque": null
+    },
+    "choc_ecoles_effectifs": {
+      "valeur": 0.044,
+      "risque": 16.9009
+    },
+    "entrees_cp1": {
+      "valeur": 0.1851,
+      "risque": 4.4196
+    },
+    "reussite_cep": {
+      "valeur": 80.4465,
+      "risque": 52.5625
+    },
+    "scolarisation_tbs": {
+      "valeur": 77.1581,
+      "risque": 33.676
+    },
+    "presco_acces": {
+      "valeur": 3.5745,
+      "risque": 68.683
+    }
+  },
+  "HBS": {
+    "achevement_niveau": {
+      "valeur": 69.8213,
+      "risque": 17.9401
+    },
+    "achevement_tendance": {
+      "valeur": -1.1567,
+      "risque": 17.7857
+    },
+    "ecart_genre_achevement": {
+      "valeur": 12.0027,
+      "risque": 82.8485
+    },
+    "ecart_signe": {
+      "valeur": 12.0027,
+      "risque": null
+    },
+    "choc_ecoles_effectifs": {
+      "valeur": 0.0914,
+      "risque": 35.8447
+    },
+    "entrees_cp1": {
+      "valeur": 0.0995,
+      "risque": 24.5846
+    },
+    "reussite_cep": {
+      "valeur": 79.2352,
+      "risque": 64.2787
+    },
+    "scolarisation_tbs": {
+      "valeur": 94.2765,
+      "risque": 8.4382
+    },
+    "presco_acces": {
+      "valeur": 7.2577,
+      "risque": 0.9814
+    }
+  },
+  "SOU": {
+    "achevement_niveau": {
+      "valeur": 55.4992,
+      "risque": 41.6062
+    },
+    "achevement_tendance": {
+      "valeur": -0.4975,
+      "risque": 14.8458
+    },
+    "ecart_genre_achevement": {
+      "valeur": 2.1914,
+      "risque": 0.0
+    },
+    "ecart_signe": {
+      "valeur": 2.1914,
+      "risque": null
+    },
+    "choc_ecoles_effectifs": {
+      "valeur": 0.0154,
+      "risque": 5.4692
+    },
+    "entrees_cp1": {
+      "valeur": 0.1342,
+      "risque": 16.4202
+    },
+    "reussite_cep": {
+      "valeur": 80.1496,
+      "risque": 55.4334
+    },
+    "scolarisation_tbs": {
+      "valeur": 81.4652,
+      "risque": 27.326
+    },
+    "presco_acces": {
+      "valeur": 5.2706,
+      "risque": 37.5073
+    }
+  },
+  "COU": {
+    "achevement_niveau": {
+      "valeur": 80.9846,
+      "risque": 0.0
+    },
+    "achevement_tendance": {
+      "valeur": 2.9201,
+      "risque": 0.0
+    },
+    "ecart_genre_achevement": {
+      "valeur": 16.2484,
+      "risque": 100.0
+    },
+    "ecart_signe": {
+      "valeur": 16.2484,
+      "risque": null
+    },
+    "choc_ecoles_effectifs": {
+      "valeur": 0.0175,
+      "risque": 6.3096
+    },
+    "entrees_cp1": {
+      "valeur": 0.1252,
+      "risque": 18.5335
+    },
+    "reussite_cep": {
+      "valeur": 74.6187,
+      "risque": 100.0
+    },
+    "scolarisation_tbs": {
+      "valeur": 100.0,
+      "risque": 0.0
+    },
+    "presco_acces": {
+      "valeur": 7.2547,
+      "risque": 1.0369
+    }
+  },
+  "PCL": {
+    "achevement_niveau": {
+      "valeur": 69.2776,
+      "risque": 18.8386
+    },
+    "achevement_tendance": {
+      "valeur": -2.0673,
+      "risque": 21.8466
+    },
+    "ecart_genre_achevement": {
+      "valeur": 12.8176,
+      "risque": 89.9097
+    },
+    "ecart_signe": {
+      "valeur": 12.8176,
+      "risque": null
+    },
+    "choc_ecoles_effectifs": {
+      "valeur": 0.0,
+      "risque": 0.0
+    },
+    "entrees_cp1": {
+      "valeur": 0.2061,
+      "risque": 0.0
+    },
+    "reussite_cep": {
+      "valeur": 83.6915,
+      "risque": 21.1756
+    },
+    "scolarisation_tbs": {
+      "valeur": 100.0,
+      "risque": 0.0
+    },
+    "presco_acces": {
+      "valeur": 6.3701,
+      "risque": 17.2967
+    }
+  },
+  "CSU": {
+    "achevement_niveau": {
+      "valeur": 79.4529,
+      "risque": 2.0248
+    },
+    "achevement_tendance": {
+      "valeur": 2.4767,
+      "risque": 1.582
+    },
+    "ecart_genre_achevement": {
+      "valeur": 14.2734,
+      "risque": 100.0
+    },
+    "ecart_signe": {
+      "valeur": 14.2734,
+      "risque": null
+    },
+    "choc_ecoles_effectifs": {
+      "valeur": 0.0089,
+      "risque": 2.8481
+    },
+    "entrees_cp1": {
+      "valeur": 0.1058,
+      "risque": 23.1126
+    },
+    "reussite_cep": {
+      "valeur": 85.5014,
+      "risque": 3.6696
+    },
+    "scolarisation_tbs": {
+      "valeur": 100.0,
+      "risque": 0.0
+    },
+    "presco_acces": {
+      "valeur": 4.9991,
+      "risque": 42.4979
+    }
+  },
+  "CEN": {
+    "achevement_niveau": {
+      "valeur": 92.5782,
+      "risque": 0.0
+    },
+    "achevement_tendance": {
+      "valeur": 10.6927,
+      "risque": 0.0
+    },
+    "ecart_genre_achevement": {
+      "valeur": 10.9346,
+      "risque": 73.5949
+    },
+    "ecart_signe": {
+      "valeur": 10.9346,
+      "risque": null
+    },
+    "choc_ecoles_effectifs": {
+      "valeur": 0.0,
+      "risque": 0.0
+    },
+    "entrees_cp1": {
+      "valeur": 0.2614,
+      "risque": 0.0
+    },
+    "reussite_cep": {
+      "valeur": 83.5128,
+      "risque": 22.9041
+    },
+    "scolarisation_tbs": {
+      "valeur": 100.0,
+      "risque": 0.0
+    },
+    "presco_acces": {
+      "valeur": 26.4514,
+      "risque": 0.0
+    }
+  }
+}
